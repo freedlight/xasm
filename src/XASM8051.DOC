@@ -1,0 +1,185 @@
+cross assembler directives:
+
+	.APPEND	append a source file; don't return
+		.APPEND filename
+
+	.AS	output ascii data, non-terminated
+		.AS	"Message"
+
+	.ASZ	output ascii data, zero terminated
+		.ASZ	"Message"
+	
+	.BREV	define byte reversal
+		automatically handled by .CPU, for special cases
+		.BREV
+
+	.CPU	define cpu
+		required - no default
+		.CPU 8051
+
+	.DATE	output current date string to object file
+		.DATE
+
+	.DB	output data byte(s)
+		.DB	$10,$20,0
+
+	.DS	output data space
+		automatically zeroed
+		.DS	$10
+
+	.DW	output data word(s)
+		.DW	$1000,$2000,0
+
+	.ELIF	else if for conditional assembly
+		.ELIF OPFLAG
+
+	.ELSE	else for conditional assembly
+		.ELSE
+
+	.END	end of source marker - required
+		.END
+
+	.ENDIF	endif for conditional assembly
+		.ENDIF
+
+	.ENDM	end macro definition
+		.ENDM
+
+	.EQU	symbol equate
+		predefined: TRUE, FALSE
+		START .EQU $100
+		FLAG  .EQU TRUE
+
+	.ERROR	define error text output
+		.ERROR ON	= enable error output to file
+		.ERROR OFF	= disable error output to file
+		.ERROR SCREEN	= display errors to screen
+		.ERROR filename	= output errors to file
+
+	.FILLC	define empty ROM fill char
+		.FILLC $20
+
+	.HORG	set hex output code address
+		.HORG $1000
+
+	.HPAG	output ROM page number to hex output file
+		.HPAG 1
+
+	.IF	if for conditional assembly
+		.IF OPFLAG
+
+	.IFN	if not for conditional assembly
+		.IFN OPFLAG
+
+	.INCLUDE include a source file; return when done
+		.INCLUDE filename
+
+	.LIST	define listing output
+		.LIST ON	= enable listing output to file
+		.LIST OFF	= disable listing output to file
+		.LIST SCREEN	= display listing to screen
+		.LIST PRINT	= send listing to printer
+		.LIST filname	= output listing to file
+
+	.MACRO	start macro definition
+		.MACRO QTEST
+
+	.OBJ	define object code format
+		.OBJ ON		= output binary object
+		.OBJ OFF	= output Motorola Hex
+
+	.ORG	set object code address
+		.ORG $100
+
+	.RORG	set object code address backwards
+		used with .HORG, for bank switching
+		.RORG $100
+
+	.SET	redefinable symbol equate
+		FLAG .SET 1
+
+	.SYMBOL	define symbol table output
+		.SYMBOL ON	= enable symbol output to file
+		.SYMBOL OFF	= disable symbol output to file
+		.SYMBOL SCREEN	= display symbol table to screen
+		.SYMBOL filname	= output symbol table to file
+
+	.TIME	output current time string to object file
+		.TIME
+
+
+
+predefined addresses for 8051:
+
+	ACC
+	B
+	PSW
+		P	- bit 0
+		OV	- bit 2
+		RS0	- bit 3
+		RS1	- bit 4
+		F0	- bit 5
+		AC	- bit 6
+		CY	- bit 7
+	P0
+	P1
+	P2
+	P3
+		RXD	- bit 0
+		TXD	- bit 1
+		INT0	- bit 2
+		INT1	- bit 3
+		T0	- bit 4
+		T1	- bit 5
+		WR	- bit 6
+		RD	- bit 7
+	IP
+		PX0 - bit 0
+		PT0 - bit 1
+		PX1 - bit 2
+		PT1 - bit 3
+		PS  - bit 4
+		PT2 - bit 5
+	IE
+		EX0	- bit 0
+		ET0	- bit 1
+		EX1	- bit 2
+		ET1	- bit 3
+		ES	- bit 4
+		ET2	- bit 5
+		EA	- bit 7
+	TCON
+		IT0	- bit 0
+		IE0	- bit 1
+		IT1	- bit 2
+		IE1	- bit 3
+		TR0	- bit 4
+		TF0	- bit 5
+		TR1	- bit 6
+		TF1	- bit 7
+	T2CON
+	SCON
+		RI	- bit 0
+		TI	- bit 1
+		RB8	- bit 2
+		TB8	- bit 3
+		REN	- bit 4
+		SM2	- bit 5
+		SM1	- bit 6
+		SM0	- bit 7
+	SBUF
+	TMOD
+	SP
+	TL0
+	TL1
+	TH0
+	TH1
+	DPL
+	DPH
+	PCON
+	TL2
+	TH2
+	RCAP2L
+	RCAP2H
+
+

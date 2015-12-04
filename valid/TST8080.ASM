@@ -1,0 +1,271 @@
+	.LIST 8080.lst
+	.CPU  8080
+;:ts=8
+; test sample for xgen8080.c
+; opcode results in numeric sequence
+; no errors should result
+
+	.ORG $1000
+
+ZLOC	.EQU	$0012	;SAMPLE ADDRESS IN PAGE ZERO
+MLOC	.EQU	$3412	;SAMPLE ADDRESS NOT IN PAGE ZERO
+
+BEGIN	NOP
+	LXI	B,MLOC
+	STAX	B
+	INX	B
+	INR	B
+	DCR	B
+	MVI	B,$10
+	RLC
+	.DB	$08		;no opcode
+	DAD	B
+	LDAX	B
+	DCX	B
+	INR	C
+	DCR	C
+	MVI	C,$10
+	RRC
+	.DB	$10		;no opcode
+	LXI	D,MLOC
+	STAX	D
+	INX	D
+	INR	D
+	DCR	D
+	MVI	D,$10
+	RAL
+	.DB	$18		;no opcode
+	DAD	D
+	LDAX	D
+	DCX	D
+	INR	E
+	DCR	E
+	MVI	E,$10
+	RAR
+	.DB	$20		;no opcode
+	LXI	H,MLOC
+	SHLD	MLOC
+	INX	H
+	INR	H
+	DCR	H
+	MVI	H,$10
+	DAA
+	.DB	$28		;no opcode
+	DAD	H
+	LHLD	MLOC
+	DCX	H
+	INR	L
+	DCR	L
+	MVI	L,$10
+	CMA
+	.DB	$30		;no opcode
+	LXI	SP,MLOC
+	STA	MLOC
+	INX	SP
+	INR	M
+	DCR	M
+	MVI	M,$10
+	STC
+	.DB	$38		;no opcode
+	DAD	SP
+	LDA	MLOC
+	DCX	SP
+	INR	A
+	DCR	A
+	MVI	A,$10
+	CMC
+	MOV	B,B
+	MOV	B,C
+	MOV	B,D
+	MOV	B,E
+	MOV	B,H
+	MOV	B,L
+	MOV	B,M
+	MOV	B,A
+	MOV	C,B
+	MOV	C,C
+	MOV	C,D
+	MOV	C,E
+	MOV	C,H
+	MOV	C,L
+	MOV	C,M
+	MOV	C,A
+	MOV	D,B
+	MOV	D,C
+	MOV	D,D
+	MOV	D,E
+	MOV	D,H
+	MOV	D,L
+	MOV	D,M
+	MOV	D,A
+	MOV	E,B
+	MOV	E,C
+	MOV	E,D
+	MOV	E,E
+	MOV	E,H
+	MOV	E,L
+	MOV	E,M
+	MOV	E,A
+	MOV	H,B
+	MOV	H,C
+	MOV	H,D
+	MOV	H,E
+	MOV	H,H
+	MOV	H,L
+	MOV	H,M
+	MOV	H,A
+	MOV	L,B
+	MOV	L,C
+	MOV	L,D
+	MOV	L,E
+	MOV	L,H
+	MOV	L,L
+	MOV	L,M
+	MOV	L,A
+	MOV	M,B
+	MOV	M,C
+	MOV	M,D
+	MOV	M,E
+	MOV	M,H
+	MOV	M,L
+	HLT
+	MOV	M,A
+	MOV	A,B
+	MOV	A,C
+	MOV	A,D
+	MOV	A,E
+	MOV	A,H
+	MOV	A,L
+	MOV	A,M
+	MOV	A,A
+	ADD	B
+	ADD	C
+	ADD	D
+	ADD	E
+	ADD	H
+	ADD	L
+	ADD	M
+	ADD	A
+	ADC	B
+	ADC	C
+	ADC	D
+	ADC	E
+	ADC	H
+	ADC	L
+	ADC	M
+	ADC	A
+	SUB	B
+	SUB	C
+	SUB	D
+	SUB	E
+	SUB	H
+	SUB	L
+	SUB	M
+	SUB	A
+	SBB	B
+	SBB	C
+	SBB	D
+	SBB	E
+	SBB	H
+	SBB	L
+	SBB	M
+	SBB	A
+	ANA	B
+	ANA	C
+	ANA	D
+	ANA	E
+	ANA	H
+	ANA	L
+	ANA	M
+	ANA	A
+	XRA	B
+	XRA	C
+	XRA	D
+	XRA	E
+	XRA	H
+	XRA	L
+	XRA	M
+	XRA	A
+	ORA	B
+	ORA	C
+	ORA	D
+	ORA	E
+	ORA	H
+	ORA	L
+	ORA	M
+	ORA	A
+	CMP	B
+	CMP	C
+	CMP	D
+	CMP	E
+	CMP	H
+	CMP	L
+	CMP	M
+	CMP	A
+	RNZ
+	POP	B
+	JNZ	L1
+	JMP	L1
+	CNZ	L1
+	PUSH	B
+L1	ADI	$10
+	RST	0
+	RZ
+	RET
+	JZ	L1
+	.DB	$CB		;no opcode
+	CZ	L1
+	CALL	L1
+	ACI	$10
+	RST	1
+	RNC
+	POP	D
+	JNC	L2
+	OUT	$20
+	CNC	L2
+	PUSH	D
+L2	SUI	$10
+	RST	2
+	RC
+	.DB	$D9		;no opcode
+	JC	L2
+	IN	$20
+	CC	L2
+	.DB	$DD		;no opcode
+	SBI	$10
+	RST	3
+	RPO
+	POP	H
+	JPO	L3
+	XTHL
+	CPO	L3
+	PUSH	H
+L3	ANI	$10
+	RST	4
+	RPE
+	PCHL
+	JPE	L3
+	XCHG
+	CPE	L3
+	.DB	$ED		;no opcode
+	XRI	$10
+	RST	5
+	RP
+	POP	PSW
+	JP	L4
+	DI
+	CP	L4
+	PUSH	PSW
+L4	ORI	$10
+	RST	6
+	RM
+	SPHL
+	JM	L4
+	EI
+	CM	L4
+	.DB	$FD		;no opcode
+	CPI	$10
+	RST	7
+
+	.END
+

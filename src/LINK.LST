@@ -1,0 +1,5 @@
+xasm.obj xasmdir.obj xasmerr.obj xasminp.obj xasmout.obj+
+xasmgen.obj xasmmac.obj xasmsym.obj hash.obj+
+xgen6502.obj xgen6801.obj xgen6805.obj+
+xgen6811.obj xgen8048.obj xgen8051.obj xgen8080.obj
+

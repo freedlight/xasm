@@ -1,0 +1,273 @@
+ 0001 000000          		.LIST	6502.lst
+ 0002 000000          		.SYMBOL	OFF
+ 0003 000000          		.CPU	6502
+ 0004 000000          	;:ts=8
+ 0005 000000          	; test sample for xgen6502.c
+ 0006 000000          	; opcode results in numeric sequence
+ 0007 000000          	; no errors should result
+ 0008 000000          	
+ 0009 009000          		.ORG $9000
+ 0010 009000          	
+ 0011    0012          	ZLOC	.EQU	$12	;SAMPLE ADDRESS IN PAGE ZERO
+ 0012    3412          	MLOC	.EQU	$3412	;SAMPLE ADDRESS NOT IN PAGE Z
+ 0013 009000 00 00 00 	HLOC	.DS	$10
+ 0014 009010          	
+ 0015 009010 00       		BRK
+ 0016 009011 01 12    		ORA	(ZLOC,X)
+ 0017 009013 02       	 	.DB	$02		;no opcode
+ 0018 009014 03       		.DB	$03		;no opcode
+ 0019 009015 04       		.DB	$04		;no opcode
+ 0020 009016 05 12    		ORA	ZLOC
+ 0021 009018 06 12    		ASL	ZLOC
+ 0022 00901A 07       		.DB	$07		;no opcode
+ 0023 00901B 08       		PHP
+ 0024 00901C 09 01    		ORA	#01
+ 0025 00901E 0A       		ASL	A
+ 0026 00901F 0B       		.DB	$0B		;no opcode
+ 0027 009020 0C       		.DB	$0C		;no opcode
+ 0028 009021 0D 12 34 		ORA	MLOC
+ 0029 009024 0E 12 34 	L1	ASL	MLOC
+ 0030 009027 0F       		.DB	$0F		;no opcode
+ 0031 009028 10 FA    		BPL	L1
+ 0032 00902A 11 12    		ORA	(ZLOC),Y
+ 0033 00902C 12       		.DB	$12		;no opcode
+ 0034 00902D 13       		.DB	$13		;no opcode
+ 0035 00902E 14       		.DB	$14		;no opcode
+ 0036 00902F 15 12    		ORA	ZLOC,X
+ 0037 009031 16 12    		ASL	ZLOC,X
+ 0038 009033 17       		.DB	$17		;no opcode
+ 0039 009034 18       		CLC
+ 0040 009035 19 12 34 		ORA	MLOC,Y
+ 0041 009038 1A       		.DB	$1A		;no opcode
+ 0042 009039 1B       		.DB	$1B		;no opcode
+ 0043 00903A 1C       		.DB	$1C		;no opcode
+ 0044 00903B 1D 12 34 		ORA	MLOC,X
+ 0045 00903E 1E 12 34 		ASL	MLOC,X
+ 0046 009041 1F       		.DB	$1F		;no opcode
+ 0047 009042 20 5F 90 		JSR	L3
+ 0048 009045 21 12    		AND	(ZLOC,X)
+ 0049 009047 22       		.DB	$22		;no opcode
+ 0050 009048 23       		.DB	$23		;no opcode
+ 0051 009049 24 12    		BIT	ZLOC
+ 0052 00904B 25 12    		AND	ZLOC
+ 0053 00904D 26 12    		ROL	ZLOC
+ 0054 00904F 27       		.DB	$27		;no opcode
+ 0055 009050 28       		PLP
+ 0056 009051 29 01    		AND	#$01
+ 0057 009053 2A       		ROL	A
+ 0058 009054 2B       		.DB	$2B		;no opcode
+ 0059 009055 2C 12 34 	L2	BIT	MLOC
+ 0060 009058 2D 12 34 		AND	MLOC
+ 0061 00905B 2E 12 34 		ROL	MLOC
+ 0062 00905E 2F       		.DB	$2F		;no opcode
+ 0063 00905F 30 F4    	L3	BMI	L2
+ 0064 009061 31 12    		AND	(ZLOC),Y
+ 0065 009063 32       		.DB	$32		;no opcode
+ 0066 009064 33       		.DB	$33		;no opcode
+ 0067 009065 34       		.DB	$34		;no opcode
+ 0068 009066 35 12    		AND	ZLOC,X
+ 0069 009068 36 12    		ROL	ZLOC,X
+ 0070 00906A 37       		.DB	$37		;no opcode
+ 0071 00906B 38       		SEC
+ 0072 00906C 39 12 34 		AND	MLOC,Y
+ 0073 00906F 3A       		.DB	$3A		;no opcode
+ 0074 009070 3B       		.DB	$3B		;no opcode
+ 0075 009071 3C       		.DB	$3C		;no opcode
+ 0076 009072 3D 12 34 		AND	MLOC,X
+ 0077 009075 3E 12 34 		ROL	MLOC,X
+ 0078 009078 3F       		.DB	$3F		;no opcode
+ 0079 009079 40       		RTI
+ 0080 00907A 41 12    		EOR	(ZLOC,X)
+ 0081 00907C 42       		.DB	$42		;no opcode
+ 0082 00907D 43       		.DB	$43		;no opcode
+ 0083 00907E 44       		.DB	$44		;no opcode
+ 0084 00907F 45 12    		EOR	ZLOC
+ 0085 009081 46 12    		LSR	ZLOC
+ 0086 009083 47       		.DB	$47		;no opcode
+ 0087 009084 48       		PHA
+ 0088 009085 49 01    		EOR	#01
+ 0089 009087 4A       		LSR	A
+ 0090 009088 4B       		.DB	$4B		;no opcode
+ 0091 009089 4C 5F 90 		JMP	L3
+ 0092 00908C 4D 12 34 		EOR	MLOC
+ 0093 00908F 4E 12 34 		LSR	MLOC
+ 0094 009092 4F       		.DB	$4F		;no opcode
+ 0095 009093 50 05    		BVC	L4
+ 0096 009095 51 12    		EOR	(ZLOC),Y
+ 0097 009097 52       		.DB	$52		;no opcode
+ 0098 009098 53       		.DB	$53		;no opcode
+ 0099 009099 54       		.DB	$54		;no opcode
+ 0100 00909A 55 12    	L4	EOR	ZLOC,X
+ 0101 00909C 56 12    		LSR	ZLOC,X
+ 0102 00909E 57       		.DB	$57		;no opcode
+ 0103 00909F 58       		CLI
+ 0104 0090A0 59 12 34 		EOR	MLOC,Y
+ 0105 0090A3 5A       		.DB	$5A		;no opcode
+ 0106 0090A4 5B       		.DB	$5B		;no opcode
+ 0107 0090A5 5C       		.DB	$5C		;no opcode
+ 0108 0090A6 5D 12 34 		EOR	MLOC,X
+ 0109 0090A9 5E 12 34 		LSR	MLOC,X
+ 0110 0090AC 5F       		.DB	$5F		;no opcode
+ 0111 0090AD 60       		RTS
+ 0112 0090AE 61 12    		ADC	(ZLOC,X)
+ 0113 0090B0 62       		.DB	$62		;no opcode
+ 0114 0090B1 63       		.DB	$63		;no opcode
+ 0115 0090B2 64       		.DB	$64		;no opcode
+ 0116 0090B3 65 12    		ADC	ZLOC
+ 0117 0090B5 66 12    		ROR	ZLOC
+ 0118 0090B7 67       		.DB	$67		;no opcode
+ 0119 0090B8 68       		PLA
+ 0120 0090B9 69 01    		ADC	#$01
+ 0121 0090BB 6A       		ROR	A
+ 0122 0090BC 6B       		.DB	$6B		;no opcode
+ 0123 0090BD 6C 12 34 		JMP	(MLOC)
+ 0124 0090C0 6D 12 34 		ADC	MLOC
+ 0125 0090C3 6E 12 34 		ROR	MLOC
+ 0126 0090C6 6F       		.DB	$6F		;no opcode
+ 0127 0090C7 70 05    		BVS	L5
+ 0128 0090C9 71 12    		ADC	(ZLOC),Y
+ 0129 0090CB 72       		.DB	$72		;no opcode
+ 0130 0090CC 73       		.DB	$73		;no opcode
+ 0131 0090CD 74       		.DB	$74		;no opcode
+ 0132 0090CE 75 12    	L5	ADC	ZLOC,X
+ 0133 0090D0 76 12    		ROR	ZLOC,X
+ 0134 0090D2 77       		.DB	$77		;no opcode
+ 0135 0090D3 78       		SEI
+ 0136 0090D4 79 12 34 		ADC	MLOC,Y
+ 0137 0090D7 7A       		.DB	$7A		;no opcode
+ 0138 0090D8 7B       		.DB	$7B		;no opcode
+ 0139 0090D9 7C       		.DB	$7C		;no opcode
+ 0140 0090DA 7D 12 34 		ADC	MLOC,X
+ 0141 0090DD 7E 12 34 		ROR	MLOC,X
+ 0142 0090E0 7F       		.DB	$7F		;no opcode
+ 0143 0090E1 80       		.DB	$80		;no opcode
+ 0144 0090E2 81 12    		STA	(ZLOC,X)
+ 0145 0090E4 82       		.DB	$82		;no opcode
+ 0146 0090E5 83       		.DB	$83		;no opcode
+ 0147 0090E6 84 12    		STY	ZLOC
+ 0148 0090E8 85 12    		STA	ZLOC
+ 0149 0090EA 86 12    		STX	ZLOC
+ 0150 0090EC 87       		.DB	$87		;no opcode
+ 0151 0090ED 88       		DEY
+ 0152 0090EE 89       		.DB	$89		;no opcode
+ 0153 0090EF 8A       		TXA
+ 0154 0090F0 8B       		.DB	$8B		;no opcode
+ 0155 0090F1 8C 12 34 		STY	MLOC
+ 0156 0090F4 8D 12 34 		STA	MLOC
+ 0157 0090F7 8E 12 34 	L6	STX	MLOC
+ 0158 0090FA 8F       		.DB	$8F		;no opcode
+ 0159 0090FB 90 FA    		BCC	L6
+ 0160 0090FD 91 12    		STA	(ZLOC),Y
+ 0161 0090FF 92       		.DB	$92		;no opcode
+ 0162 009100 93       		.DB	$93		;no opcode
+ 0163 009101 94 12    		STY	ZLOC,X
+ 0164 009103 95 12    		STA	ZLOC,X
+ 0165 009105 96 12    		STX	ZLOC,Y
+ 0166 009107 97       		.DB	$97		;no opcode
+ 0167 009108 98       		TYA
+ 0168 009109 99 12 34 		STA	MLOC,Y
+ 0169 00910C 9A       		TXS
+ 0170 00910D 9B       		.DB	$9B		;no opcode
+ 0171 00910E 9C       		.DB	$9C		;no opcode
+ 0172 00910F 9D 12 34 		STA	MLOC,X
+ 0173 009112 9E       		.DB	$9E		;no opcode
+ 0174 009113 9F       		.DB	$9F		;no opcode
+ 0175 009114 A0 01    		LDY	#01
+ 0176 009116 A1 12    		LDA	(ZLOC,X)
+ 0177 009118 A2 01    		LDX	#01
+ 0178 00911A A3       		.DB	$A3		;no opcode
+ 0179 00911B A4 12    		LDY	ZLOC
+ 0180 00911D A5 12    		LDA	ZLOC
+ 0181 00911F A6 12    		LDX	ZLOC
+ 0182 009121 A7       		.DB	$A7		;no opcode
+ 0183 009122 A8       		TAY
+ 0184 009123 A9 01    		LDA	#01
+ 0185 009125 AA       		TAX
+ 0186 009126 AB       		.DB	$AB		;no opcode
+ 0187 009127 AC 12 34 		LDY	MLOC
+ 0188 00912A AD 12 34 		LDA	MLOC
+ 0189 00912D AE 12 34 		LDX	MLOC
+ 0190 009130 AF       		.DB	$AF		;no opcode
+ 0191 009131 B0 04    		BCS	L7
+ 0192 009133 B1 12    		LDA	(ZLOC),Y
+ 0193 009135 B2       		.DB	$B2		;no opcode
+ 0194 009136 B3       		.DB	$B3		;no opcode
+ 0195 009137 B4 12    	L7	LDY	ZLOC,X
+ 0196 009139 B5 12    		LDA	ZLOC,X
+ 0197 00913B B6 12    		LDX	ZLOC,Y
+ 0198 00913D B7       		.DB	$B7		;no opcode
+ 0199 00913E B8       		CLV
+ 0200 00913F B9 12 34 		LDA	MLOC,Y
+ 0201 009142 BA       		TSX
+ 0202 009143 BB       		.DB	$BB		;no opcode
+ 0203 009144 BC 12 34 		LDY	MLOC,X
+ 0204 009147 BD 12 34 		LDA	MLOC,X
+ 0205 00914A BE 12 34 		LDX	MLOC,Y
+ 0206 00914D BF       		.DB	$BF		;no opcode
+ 0207 00914E C0 01    		CPY	#01
+ 0208 009150 C1 12    		CMP	(ZLOC,X)
+ 0209 009152 C2       		.DB	$C2		;no opcode
+ 0210 009153 C3       		.DB	$C3		;no opcode
+ 0211 009154 C4 12    		CPY	ZLOC
+ 0212 009156 C5 12    		CMP	ZLOC
+ 0213 009158 C6 12    		DEC	ZLOC
+ 0214 00915A C7       		.DB	$C7		;no opcode
+ 0215 00915B C8       		INY
+ 0216 00915C C9 01    		CMP	#01
+ 0217 00915E CA       		DEX
+ 0218 00915F CB       		.DB	$CB		;no opcode
+ 0219 009160 CC 12 34 		CPY	MLOC
+ 0220 009163 CD 12 34 		CMP	MLOC
+ 0221 009166 CE 12 34 		DEC	MLOC
+ 0222 009169 CF       		.DB	$CF		;no opcode
+ 0223 00916A D0 0A    		BNE	L8
+ 0224 00916C D1 12    		CMP	(ZLOC),Y
+ 0225 00916E D2       		.DB	$D2		;no opcode
+ 0226 00916F D3       		.DB	$D3		;no opcode
+ 0227 009170 D4       		.DB	$D4		;no opcode
+ 0228 009171 D5 12    		CMP	ZLOC,X
+ 0229 009173 D6 12    		DEC	ZLOC,X
+ 0230 009175 D7       		.DB	$D7		;no opcode
+ 0231 009176 D8       	L8	CLD
+ 0232 009177 D9 12 34 		CMP	MLOC,Y
+ 0233 00917A DA       		.DB	$DA		;no opcode
+ 0234 00917B DB       		.DB	$DB		;no opcode
+ 0235 00917C DC       		.DB	$DC		;no opcode
+ 0236 00917D DD 12 34 		CMP	MLOC,X
+ 0237 009180 DE 12 34 		DEC	MLOC,X
+ 0238 009183 DF       		.DB	$DF		;no opcode
+ 0239 009184 E0 10    		CPX	#$10
+ 0240 009186 E1 12    		SBC	(ZLOC,X)
+ 0241 009188 E2       		.DB	$E2		;no opcode
+ 0242 009189 E3       		.DB	$E3		;no opcode
+ 0243 00918A E4 12    		CPX	ZLOC
+ 0244 00918C E5 12    		SBC	ZLOC
+ 0245 00918E E6 12    		INC	ZLOC
+ 0246 009190 E7       		.DB	$E7		;no opcode
+ 0247 009191 E8       		INX
+ 0248 009192 E9 01    		SBC	#01
+ 0249 009194 EA       		NOP
+ 0250 009195 EB       		.DB	$EB		;no opcode
+ 0251 009196 EC 12 34 		CPX	MLOC
+ 0252 009199 ED 12 34 		SBC	MLOC
+ 0253 00919C EE 12 34 		INC	MLOC
+ 0254 00919F EF       		.DB	$EF		;no opcode
+ 0255 0091A0 F0 0A    		BEQ	L9
+ 0256 0091A2 F1 12    		SBC	(ZLOC),Y
+ 0257 0091A4 F2       		.DB	$F2		;no opcode
+ 0258 0091A5 F3       		.DB	$F3		;no opcode
+ 0259 0091A6 F4       		.DB	$F4		;no opcode
+ 0260 0091A7 F5 12    		SBC	ZLOC,X
+ 0261 0091A9 F6 12    		INC	ZLOC,X
+ 0262 0091AB F7       		.DB	$F7		;no opcode
+ 0263 0091AC F8       	L9	SED
+ 0264 0091AD F9 12 34 		SBC	MLOC,Y
+ 0265 0091B0 FA       		.DB	$FA		;no opcode
+ 0266 0091B1 FB       		.DB	$FB		;no opcode
+ 0267 0091B2 FC       		.DB	$FC		;no opcode
+ 0268 0091B3 FD 12 34 		SBC	MLOC,X
+ 0269 0091B6 FE 12 34 		INC	MLOC,X
+ 0270 0091B9 FF       		.DB	$FF		;no opcode
+ 0271 0091BA          	
+ 0272 0091BA          		.END
+

@@ -1,0 +1,271 @@
+	.LIST 6803.lst
+	.CPU  6303
+;:ts=8
+; test sample for xgen6803.c
+; opcode results in numeric sequence
+; no errors should result
+
+	.ORG	900:0000
+
+ZLOC	.EQU	$0012	;SAMPLE ADDRESS IN PAGE ZERO
+MLOC	.EQU	$3412	;SAMPLE ADDRESS NOT IN PAGE ZERO
+
+BEGIN	.DB	$00	;invalid opcode
+	NOP
+	.DB	$02	;invalid opcode
+	.DB	$03	;invalid opcode
+	LSRD
+	ASLD
+	TAP
+	TPA
+	INX
+	DEX
+	CLV
+	SEV
+	CLC
+	SEC
+	CLI
+	SEI
+	SBA
+	CBA
+	.DB	$12	;invalid opcode
+	.DB	$13	;invalid opcode
+	.DB	$14	;invalid opcode
+	.DB	$15	;invalid opcode
+	TAB
+	TBA
+	XGDX
+	DAA
+L9	SLP
+	ABA
+	.DB	$1C	;invalid opcode
+	.DB	$1D	;invalid opcode
+	.DB	$1E	;invalid opcode
+	.DB	$1F	;invalid opcode
+	BRA	L9
+	BRN	L9
+	BHI	L9
+	BLS	L9
+	BCC	L9
+	BCS	L9
+	BNE	L9
+	BEQ	L9
+	BVC	L9
+	BVS	L9
+	BPL	L9
+	BMI	L9
+	BGE	L9
+	BLT	L9
+	BGT	L9
+	BLE	L9
+	TSX
+	INS
+	PULA
+	PULB
+	DES
+	TXS
+	PSHA
+	PSHB
+	PULX
+	RTS
+	ABX
+	RTI
+	PSHX
+	MUL
+	WAI
+	SWI
+	NEG	A
+	.DB	$41	;invalid opcode
+	.DB	$42	;invalid opcode
+	COM	A
+	LSR	A
+	.DB	$45	;invalid opcode
+	ROR	A
+	ASR	A
+	ASL	A
+	ROL	A
+	DEC	A
+	.DB	$4B	;invalid opcode
+	INC	A
+	TST	A
+	.DB	$4E	;invalid opcode
+	CLR	A
+	NEG	B
+	.DB	$51	;invalid opcode
+	.DB	$52	;invalid opcode
+	COM	B
+	LSR	B
+	.DB	$55	;invalid opcode
+	ROR	B
+	ASR	B
+	ASL	B
+	ROL	B
+	DEC	B
+	.DB	$5B	;invalid opcode
+	INC	B
+	TST	B
+	.DB	$5E	;invalid opcode
+	CLR	B
+	NEG	ZLOC,X
+	AIM	#$01,ZLOC,X
+	OIM	#$01,ZLOC,X
+	COM	ZLOC,X
+	LSR	ZLOC,X
+	EIM	#$01,ZLOC,X
+	ROR	ZLOC,X
+	ASR	ZLOC,X
+	ASL	ZLOC,X
+	ROL	$11,X
+	DEC	ZLOC,X
+	TIM	#$01,ZLOC,X
+	INC	ZLOC,X
+	TST	ZLOC,X
+	JMP	ZLOC,X
+	CLR	ZLOC,X
+	NEG	MLOC
+	AIM	#$01,ZLOC
+	OIM	#$01,ZLOC
+	COM	MLOC
+	LSR	MLOC
+	EIM	#$01,ZLOC
+	ROR	MLOC
+	ASR	MLOC
+	ASL	MLOC
+	ROL	MLOC
+	DEC	MLOC
+	TIM	#$01,ZLOC
+	INC	MLOC
+	TST	MLOC
+	JMP	MLOC
+	CLR	MLOC
+	SUBA	#$01
+	CMPA	#$01
+	SBCA	#$01
+	SUBD	#$01
+	ANDA	#$01
+	BITA	#$01
+	LDAA	#$01
+	.DB	$87	;invalid opcode
+LA	EORA	#$01
+	ADCA	#$01
+	ORAA	#$01
+	ADDA	#$01
+	CPX	#$01
+	BSR	LA
+	LDS	#$01
+	.DB	$8F	;invalid opcode
+	SUBA	ZLOC
+	CMPA	ZLOC
+	SBCA	$11
+	SUBD	ZLOC
+	ANDA	ZLOC
+	BITA	ZLOC
+	LDAA	ZLOC
+	STAA	$11
+	EORA	ZLOC
+	ADCA	ZLOC
+	ORAA	ZLOC
+	ADDA	ZLOC
+	CPX	ZLOC
+	JSR	ZLOC
+	LDS	ZLOC
+	STS	ZLOC
+	SUBA	ZLOC,X
+	CMPA	ZLOC,X
+	SBCA	$11,X
+	SUBD	$11,X
+	ANDA	ZLOC,X
+	BITA	ZLOC,X
+	LDAA	ZLOC,X
+	STAA	$11,X
+	EORA	ZLOC,X
+	ADCA	ZLOC,X
+	ORAA	$11,X
+	ADDA	$11,X
+	CPX	$11,X
+	JSR	ZLOC,X
+	LDS	ZLOC,X
+	STS	$11,X
+	SUBA	MLOC
+	CMPA	MLOC
+	SBCA	MLOC
+	SUBD	MLOC
+	ANDA	MLOC
+	BITA	MLOC
+	LDAA	MLOC
+	STAA	MLOC
+	EORA	$0100
+	ADCA	MLOC
+	ORAA	$0100
+	ADDA	MLOC
+	CPX	MLOC
+	JSR	BEGIN
+	LDS	MLOC
+	STS	MLOC
+	SUBB	#$01
+	CMPB	#$01
+	SBCB	#$01
+	ADDD	#$01
+	ANDB	#$01
+	BITB	#$01
+	LDAB	#$01
+	.DB	$C7	;invalid opcode
+	EORB	#$01
+	ADCB	#$01
+	ORAB	#$01
+	ADDB	#$01
+	LDD	#$01
+	.DB	$CD	;invalid opcode
+	LDX	#$01
+	.DB	$CF	;invalid opcode
+	SUBB	ZLOC
+	CMPB	ZLOC
+	SBCB	ZLOC
+	ADDD	ZLOC
+	ANDB	ZLOC
+	BITB	ZLOC
+	LDAB	$11
+	STAB	ZLOC
+	EORB	ZLOC
+	ADCB	ZLOC
+	ORAB	ZLOC
+	ADDB	$11
+	LDD	ZLOC
+	STD	ZLOC
+	LDX	ZLOC
+	STX	ZLOC
+	SUBB	ZLOC,X
+	CMPB	ZLOC,X
+	SBCB	ZLOC,X
+	ADDD	$11,X
+	ANDB	$11,X
+	BITB	$11,X
+	LDAB	ZLOC,X
+	STAB	ZLOC,X
+	EORB	ZLOC,X
+	ADCB	$11,X
+	ORAB	$11,X
+	ADDB	$11,X
+	LDD	ZLOC,X
+	STD	ZLOC,X
+	LDX	$11,X
+	STX	$11,X
+	SUBB	MLOC
+	CMPB	MLOC
+	SBCB	MLOC
+	ADDD	MLOC
+	ANDB	MLOC
+	BITB	MLOC
+	LDAB	MLOC
+	STAB	MLOC
+	EORB	MLOC
+	ADCB	$0100
+	ORAB	MLOC
+	ADDB	$0100
+	LDD	MLOC
+	STD	MLOC
+	LDX	MLOC
+	STX	MLOC
+
+	.END
+

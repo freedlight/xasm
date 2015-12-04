@@ -1,0 +1,80 @@
+#
+# makefile for xasm
+#
+
+.c.obj:
+	@bcc -c -C -G -O -d -v -ml $*.c
+
+AOBJ= xasm.obj xasmdir.obj xasmerr.obj xasminp.obj xasmout.obj\
+	 xasmgen.obj xasmmac.obj xasmsym.obj hash.obj\
+	 xgen6502.obj xgen6801.obj xgen6805.obj \
+	 xgen6811.obj xgen8048.obj xgen8051.obj xgen8080.obj
+
+LINKOPT= /c /n /v
+
+all:	xasm.exe cpubld.exe cpucat.exe
+
+xasm:	xasm.exe
+
+cpubld:	cpubld.exe
+
+cpucat:	cpucat.exe
+
+xasm.exe: $(AOBJ)
+	@tlink $(LINKOPT) c0l @link.lst,xasm,xasm,fp87 mathl cl
+	@del *.bak
+
+cpubld.exe: cpubld.obj
+	@tlink $(LINKOPT) c0l cpubld.obj,cpubld,NUL,cl
+	@del *.bak
+
+cpucat.exe: cpucat.obj
+	@tlink $(LINKOPT) c0l cpucat.obj,cpucat,NUL,cl
+	@del *.bak
+
+clean:
+	@rm -b valid/*.hex valid/*.bak valid/*.lst *.bak
+	-attrib -a *.obj
+
+install:
+	tdstrip xasm
+	copy xasm.exe \bin\dos
+
+# individual dependencies
+
+cpubld.obj:	xasm.h cputype.h
+
+cpucat.obj:	xasm.h cputype.h
+
+hash.obj:	hash.h
+
+xasm.obj:	xasm.h
+
+xasmdir.obj:	xasm.h
+
+xasmerr.obj:	xasm.h
+
+xasmgen.obj:	xasm.h
+
+xasminp.obj:	xasm.h
+
+xasmmac.obj:	xasm.h
+
+xasmout.obj:	xasm.h
+
+xasmsym.obj:	xasm.h
+
+xgen6502.obj:	xasm.h
+
+xgen6801.obj:	xasm.h
+
+xgen6805.obj:	xasm.h
+
+xgen6811.obj:	xasm.h
+
+xgen8048.obj:	xasm.h
+
+xgen8051.obj:	xasm.h
+
+xgen8080.obj:	xasm.h
+
